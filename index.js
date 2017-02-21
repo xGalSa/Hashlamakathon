@@ -1,15 +1,20 @@
 var myApp = angular.module("myApp", ['ngRoute']);
-myApp.controller('MyController', ['$scope', '$location', function ($scope, $location) {
+myApp.controller('MyController', ['$scope', '$location','$timeout', function ($scope, $location,$timeout) {
     $scope.personalNumber = '';
+    var x = this;
     $scope.signIn = function () {
-        var reg = /^(\d+)[7]$/;
+        var reg = /^(\d+){7}$/;
         var p = (RegExp(reg));
+        // the personal number check
         if (p.test($scope.personalNumber)) {
-           // document.getElementById('slider').classList.toggle('closed');
-            
-           // setTimeout(function () {         }, 5000);
-            
-            $location.path('/getDetails')
+            document.getElementById('slider').classList.toggle('closed');
+            $timeout(function () {
+               $location.path('/getDetails');
+                
+            }, 1000);
+        }
+        else {
+            sweetAlert("אופס", "טעית במספר האישי.. ", "error");
         }
     };
 }]);
