@@ -1,13 +1,6 @@
 var myApp = angular.module("myApp", ['ngRoute']);
 myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', function ($scope, $location, $timeout, $q) {
-    /*
-    // Enter
-    document.getElementById("personalNumber").addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode == 13) {
-        document.getElementById("go").click();
-    }
-});*/
+    $scope.details = '';
     $scope.personalNumber = '';
     $scope.signIn = function () {
         var reg = /^(\d+){7}$/;
@@ -19,7 +12,14 @@ myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', funct
                 var promise = getName($scope.personalNumber);
                 promise.then(function (name) {
                     x = JSON.parse(name);
-                    $location.url("/getDetails/path?first_name=" + x["first_name"] + "&last_name=" + x["last_name"]);
+                    $location.url("/menu/path?first_name=" + x["first_name"] + "&last_name=" + x["last_name"]);
+                    if (typeof (Storage) !== "undefined") {
+                        localStorage.setItem("firstName", x["first_name"]);
+                        localStorage.setItem("lastName", x["last_name"]);
+                    }
+                    else {
+                        // Sorry! No Web Storage support..
+                    }
                 }, function (error) {
                     document.getElementById('slider').classList.toggle('closed');
                 });
@@ -60,8 +60,8 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
         , controller: 'MyController'
     }).when('/menu/:name', {
         templateUrl: 'html/menu.html'
-        , controller: 'MyController'
-    }).when('/getDetails/:name', {
+        , controller: 'menuCtrl'
+    }).when('/getDetails', {
         templateUrl: 'html/form.html'
         , controller: 'MyController'
     });

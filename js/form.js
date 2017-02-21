@@ -1,11 +1,9 @@
 "use strict";
-
-myApp.controller("formController",['$scope', '$location', function($scope,$location){
-    
-    
-    var searchObject = $location.search();
-   
-    $scope.first =  searchObject["first_name"];
-    
-    $scope.last =  searchObject["last_name"];
+myApp.controller("menuCtrl", ['$scope', '$location', function ($scope, $location) {
+    $scope.first = localStorage.getItem("firstName");
+    $scope.last = localStorage.getItem("lastName");
+}]);
+myApp.controller("formController", ['$scope', '$location', function ($scope, $location) {
+    $scope.first = localStorage.getItem("firstName");
+    $scope.last = localStorage.getItem("lastName");
 }]);
