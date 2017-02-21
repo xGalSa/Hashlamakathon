@@ -3,6 +3,14 @@ var myApp = angular.module("myApp", ['ngRoute']);
 
 
 myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', function ($scope, $location, $timeout, $q) {
+   
+    // Enter
+    document.getElementById("personalNumber").addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        document.getElementById("go").click();
+    }
+});
     
     $scope.personalNumber = '';
     $scope.signIn = function () {
@@ -15,9 +23,9 @@ myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', funct
                 var promise = getName($scope.personalNumber);
                 promise.then(function (name) {
                     x = JSON.parse(name);
-                    $location.url("/getDetails/path?first_name=" + x["first_name"] + "&last_name="+x["last_name"]);
+                    $location.url("/getDetails/path?first_name=" + x["first_name"] + "&last_name=" + x["last_name"]);
                 }, function (error) {
-                    x = error;
+                    document.getElementById('slider').classList.toggle('closed');
                 });
                 var x = getName($scope.personalNumber);
             }, 1000);
