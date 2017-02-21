@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRzdZeA3FUXoR2cmOrAsyK1R79AV1imWI&libraries=places&callback=initAutocomplete" async defer></script>
+<link rel="stylesheet" type="text/css" href="Circle.css">
+<script src="Destination.js"></script>
+<div dir="rtl">
+    <div id="locationField">
+        <input id="autocomplete" placeholder="לאן נוסעים?" onFocus="geolocate()" type="text"></input>
+        <button type="button">סע!</button>
+    </div>
+</div>
