@@ -1,36 +1,28 @@
-body
-{
+body {
     max-height: inherit;
     font-family: "Segoe UI";
 }
 
-#background{
+#background {
     opacity: 20%;
     width: 100%;
     height: 100%;
-    position:fixed;
-    left:0px;
-    top:0px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
     z-index: -1;
 }
 
-.stretch{
-     width: 100%;
+.stretch {
+    width: 100%;
     height: 100%;
-    
 }
 
-
-.button
-{
-    color:white;
-    
-    
+.button {
+    color: white;
 }
 
-.signingIn
-{
-    
+.signingIn {
     width: 50%;
     height: 28%;
     text-align: center;
@@ -38,16 +30,12 @@ body
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.44);
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-     /*overflow: auto;*/
-    
+    /*overflow: auto;*/
     margin: auto;
-    
-   
-	
 }
 
 .signingIn::after {
@@ -56,41 +44,34 @@ body
     display: block;
 }
 
-.labelText
-{
+.labelText {
     font-size: 20px;
-    color:white;
+    color: white;
 }
 
-.personalNumber
-{
-    
+.personalNumber {
     margin-bottom: 5%;
     border-radius: 5px;
 }
 
-
-.title
-{
+.title {
     background-color: hsla(0, 0%, 100%, 0.2);
     opacity: 50%;
     padding-top: 2%;
-    padding-right:10%;
+    padding-right: 10%;
     font-size: 50px;
-    color:white;
-    
+    color: white;
 }
 
 #slider {
-	overflow-y: hidden;
-	max-height: 500px; /* approximate max height */
-
-	transition-property: all;
-	transition-duration: .5s;
-	transition-timing-function: linear(0, 1, 0.5, 1);
+    overflow-y: hidden;
+    max-height: 500px;
+    /* approximate max height */
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: linear(0, 1, 0.5, 1);
 }
 
 #slider.closed {
-    
-	max-height: 0;
+    max-height: 0;
 }
