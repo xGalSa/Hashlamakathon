@@ -1,5 +1,5 @@
 var myApp = angular.module("myApp", ['ngRoute']);
-myApp.controller('MyController', ['$scope', '$location','$timeout', function ($scope, $location,$timeout) {
+myApp.controller('MyController', ['$scope', '$location', '$timeout', function ($scope, $location, $timeout) {
     $scope.personalNumber = '';
     var x = this;
     $scope.signIn = function () {
@@ -9,8 +9,19 @@ myApp.controller('MyController', ['$scope', '$location','$timeout', function ($s
         if (p.test($scope.personalNumber)) {
             document.getElementById('slider').classList.toggle('closed');
             $timeout(function () {
-               $location.path('/getDetails');
-                
+                $.ajax({
+                    method: 'GET'
+                    , contentType: "application/json"
+                    , url: "http://10.17.1.70/user/" + $scope.personalNumber
+                    , context: document.body
+                    , success: function (result) {
+                        alert(result);
+                    }
+                    , error: function (result) {
+                        alert(result);
+                    }
+                });
+                $location.path('/getDetails');
             }, 1000);
         }
         else {
@@ -24,10 +35,10 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
     $scope.$routeParams = $routeParams;
 }).config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'html/login.html'
+        templateUrl: 'login.html'
         , controller: 'MyController'
     }).when('/getDetails', {
-        templateUrl: 'html/form.html'
+        templateUrl: 'form.html'
         , controller: 'MyController'
     });
 });
