@@ -2,21 +2,43 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import permissions
+from django.contrib.auth.models import User
 from rest_framework.response import Response
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
+from rest_framework import serializers
+from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+
+from app.models import *
+
+class UserSerializer(serializers.ModelSerializer):
+    # A field from the user's profile:
+    #armyID = serializers.CharField(max_length=8)
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name')
+
 
 @api_view(['GET', 'POST'])
-def rest_api_example(request):
+@permission_classes((permissions.AllowAny,))
+def user_view(request, id):
     if request.method == 'GET':
-        snippets = Snippet.objects.all()
-        serializer = SnippetSerializer(snippets, many=True)
-        return Response(serializer.data)
 
-    elif request.method == 'POST':
-        serializer = SnippetSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        s_user = None
+
+        try:
+            s_user = SoldierUser.objects.get(pk=id)
+        except SoldierUser.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        s_user = SoldierUser.objects.get(pk=id)
+        user = s_user.user
+        serializer = UserSerializer(user)
+        json = JSONRenderer().render(serializer.data)
+
+        return Response(json)
+
+
+
