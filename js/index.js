@@ -1,9 +1,5 @@
 var myApp = angular.module("myApp", ['ngRoute']);
-
-
-
 myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', function ($scope, $location, $timeout, $q) {
-   
     /*
     // Enter
     document.getElementById("personalNumber").addEventListener("keyup", function(event) {
@@ -12,7 +8,6 @@ myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', funct
         document.getElementById("go").click();
     }
 });*/
-    
     $scope.personalNumber = '';
     $scope.signIn = function () {
         var reg = /^(\d+){7}$/;
@@ -62,6 +57,9 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
 }).config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         templateUrl: 'html/login.html'
+        , controller: 'MyController'
+    }).when('/menu/:name', {
+        templateUrl: 'html/menu.html'
         , controller: 'MyController'
     }).when('/getDetails/:name', {
         templateUrl: 'html/form.html'

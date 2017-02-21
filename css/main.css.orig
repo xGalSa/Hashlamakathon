@@ -108,6 +108,20 @@ body
 }
 
 #slider.closed {
+<<<<<<< HEAD
+    max-height: 0;
+}
+
+#circle {
+	width: 200px;
+	height: 200px;
+	background: rgba(255, 0, 0, 0);
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 100px;
+    border-color: black;
+    border-style: solid;
+=======
     
 	max-height: 0;
 }
@@ -282,4 +296,5 @@ body
     top: -14rem;
     max-height: 570px;
   }
+>>>>>>> 54beeae1a997684a779d97ba6a176338071c26c9
 }
