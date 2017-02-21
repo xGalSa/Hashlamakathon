@@ -24,4 +24,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
     url(r'^user/(?P<id>[0-9]{7})$', user_view),
+    url(r'^user/$', current_user_view),
+    url(r'^user/login/(?P<id>[0-9]{7})$', login_view),
+    url(r'^user/logout$', logout_view),
 ]
