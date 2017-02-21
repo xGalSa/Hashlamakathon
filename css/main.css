@@ -75,3 +75,14 @@ body {
 #slider.closed {
     max-height: 0;
 }
+
+#circle {
+	width: 200px;
+	height: 200px;
+	background: rgba(255, 0, 0, 0);
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 100px;
+    border-color: black;
+    border-style: solid;
+}

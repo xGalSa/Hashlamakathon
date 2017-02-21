@@ -4,13 +4,14 @@ var myApp = angular.module("myApp", ['ngRoute']);
 
 myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', function ($scope, $location, $timeout, $q) {
    
+    /*
     // Enter
     document.getElementById("personalNumber").addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode == 13) {
         document.getElementById("go").click();
     }
-});
+});*/
     
     $scope.personalNumber = '';
     $scope.signIn = function () {
