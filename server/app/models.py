@@ -21,6 +21,7 @@ class Driver(models.Model):
     soldier = models.OneToOneField(SoldierUser, on_delete=models.CASCADE)
     license_number = models.CharField(max_length=9)
     expiration = models.DateField()
+    current_drive = models.OneToOneField('Drive', blank=True, null=True)
 
 class Vehicle(models.Model):
     vehicle_number = models.CharField(max_length=10, primary_key=True)
@@ -35,7 +36,9 @@ class Drive(models.Model):
     destination = models.CharField(max_length=256)
     start_mileage = models.CharField(max_length=50)
     end_mileage = models.CharField(max_length=50)
-    start_time = models.CharField(max_length=10)
-    end_time = models.CharField(max_length=10)
+    approx_mileage = models.CharField(max_length=50)
+    start_time = models.CharField(max_length=100)
+    end_time = models.CharField(max_length=100)
+    approx_time = models.CharField(max_length=100)
     # add officer approval
 
