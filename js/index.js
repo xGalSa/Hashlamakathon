@@ -24,10 +24,10 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
     $scope.$routeParams = $routeParams;
 }).config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'login.html'
+        templateUrl: 'html/login.html'
         , controller: 'MyController'
     }).when('/getDetails', {
-        templateUrl: 'form.html'
+        templateUrl: 'html/form.html'
         , controller: 'MyController'
     });
 });
