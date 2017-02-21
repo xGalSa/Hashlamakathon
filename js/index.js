@@ -55,7 +55,7 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
         templateUrl: 'html/login.html'
         , controller: 'MyController'
     }).when('/getDetails/:name', {
-        templateUrl: 'html/form.html'
+        templateUrl: 'html/menu.html'
         , controller: 'MyController'
     });
 });
