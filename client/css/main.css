@@ -3,6 +3,41 @@ body {
     font-family: "Segoe UI";
 }
 
+
+.round-button {
+	width:25%;
+}
+.round-button-circle {
+	width: 100%;
+	height:0;
+	padding-bottom: 100%;
+    border-radius: 50%;
+	border:10px solid #cfdcec;
+    overflow:hidden;
+    display:block;
+    background: #bd4646; 
+    box-shadow: 0 0 3px gray;
+}
+.round-button-circle:hover {
+	background:#8e3030;
+}
+.round-button a {
+    display:block;
+	float:left;
+	width:100%;
+	padding-top:50%;
+    padding-bottom:50%;
+	line-height:1em;
+	margin-top:-0.5em;
+    
+	text-align:center;
+	color:#f3e2e2;
+    font-size:1.2em;
+    text-decoration:none;
+}
+
+
+
 .menu {
     background-color: hsla(0, 0%, 100%, 0.2);
     opacity: 50%;
@@ -50,6 +85,7 @@ body {
 }
 
 .signingIn::after {
+    
     content: "";
     clear: both;
     display: block;
@@ -74,12 +110,17 @@ body {
 }
 
 .title {
-    background-color: hsla(0, 0%, 100%, 0.2);
-    opacity: 50%;
-    padding-top: 2%;
-    padding-right: 10%;
-    font-size: 50px;
+    text-align: center;
+    padding-top: 10%;
+    font-weight: 100;
+    font-size: 8.0rem;
     color: white;
+}
+
+.after
+{
+   
+    padding-top: 4%;
 }
 
 #slider {
@@ -108,13 +149,13 @@ body {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .section {
-    padding: 6rem 0 5rem;
+    /* padding: 0rem 0 10rem;*/
     text-align: center;
 }
 
 .section-heading,
 .section-description {
-    margin-bottom: 1.2rem;
+    margin-bottom: 82rem;
 }
 
 
@@ -143,7 +184,7 @@ body {
     background-image: url('../images/values-bg.jpg');
     background-size: cover;
     color: #fff;
-    padding-bottom: 5rem;
+    /*padding-bottom: 5rem;*/
 }
 
 .value-multiplier {
@@ -212,7 +253,7 @@ body {
     }
     .btn {
         height: auto;
-        padding-top: 15px;
+        /*padding-top: 15px;*/
         background-color: rgb(22, 60, 111);
     }
     .button.button-primary {
@@ -225,10 +266,10 @@ body {
 
 @media (min-width: 400px) {
     .section {
-        padding: 12rem 0 11rem;
+        /* padding: 12rem 0 11rem;*/
     }
     .hero {
-        padding-bottom: 12rem;
+        /*padding-bottom: 12rem;*/
         text-align: left;
         height: 165px;
     }
@@ -263,7 +304,7 @@ body {
         font-size: 2.6rem;
     }
     .section {
-        padding: 14rem 0 15rem;
+        padding: 5rem 0 5rem;
     }
     .hero {
         padding: 16rem 0 14rem;
@@ -283,7 +324,7 @@ body {
         max-height: 472px;
     }
     .categories {
-        padding: 15rem 0 8rem;
+        /* padding: 15rem 0 8rem;*/
     }
 }
 
@@ -292,10 +333,10 @@ body {
 
 @media (min-width: 1000px) {
     .section {
-        padding: 20rem 0 19rem;
+        /*padding: 20rem 0 19rem;*/
     }
     .hero {
-        padding: 22rem 0;
+        /*  padding: 22rem 0;*/
     }
     .hero-heading {
         font-size: 3.0rem;

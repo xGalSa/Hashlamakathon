@@ -4,9 +4,18 @@ myApp.controller("menuCtrl", ['$scope', '$location', function ($scope, $location
     $scope.first = localStorage.getItem("firstName");
     $scope.last = localStorage.getItem("lastName");
 }]);
+
 myApp.controller("formController", ['$scope', '$location', function ($scope, $location) {
     $scope.first = localStorage.getItem("firstName");
     $scope.last = localStorage.getItem("lastName");
+    
+     
+    $scope.go = function(){
+        
+        $(".title").hide();
+        $location.url("/finishDrive");
+        
+    };
 }]);
     
 
@@ -14,6 +23,7 @@ myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', funct
     $scope.details = '';
     $scope.personalNumber = '';
     $scope.signIn = function () {
+        $(".title").addClass("after");
         var reg = /^(\d+){7}$/;
         var p = (RegExp(reg));
         // the personal number check
@@ -74,6 +84,9 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
         , controller: 'menuCtrl'
     }).when('/getDetails', {
         templateUrl: 'html/Destination.html'
+        , controller: 'formController'
+    }).when('/finishDrive', {
+        templateUrl: 'html/finish.html'
         , controller: 'formController'
     });
 });
