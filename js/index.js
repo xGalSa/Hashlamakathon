@@ -49,6 +49,25 @@ myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', funct
             })
         });
     }
+    
+    function getDrives() {
+        return $q(function (resolve, reject) {
+            $.ajax({
+                method: 'GET'
+                , dataType: 'json'
+                , contentType: "application/json"
+                //, url: "http://10.17.1.70/user/" + personalNumber
+                , context: document.body
+                , success: function (result) {
+                    resolve(result);
+                }
+                , error: function (result) {
+                    sweetAlert("אופס", "אולי אתה לא נהג? ", "error");
+                    reject(false);
+                }
+            })
+        });
+    }
             }]);
 myApp.controller('MainController', function ($scope, $route, $routeParams, $location) {
     $scope.$route = $route;
@@ -63,6 +82,9 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
         , controller: 'menuCtrl'
     }).when('/getDetails', {
         templateUrl: 'html/form.html'
+        , controller: 'MyController'
+    }).when('/drives', {
+        templateUrl: 'html/drives.html'
         , controller: 'MyController'
     });
 });
