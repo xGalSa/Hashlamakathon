@@ -1,0 +1,20 @@
+<script src="js/Destination.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRzdZeA3FUXoR2cmOrAsyK1R79AV1imWI&libraries=places&callback=initAutocomplete" async defer></script>
+<center>
+    <div ng-controller="formController">
+        <h1> היי {{first}}  {{last}}</h1></div>
+    <h2>רק שתי שאלות לפני הנסיעה</h2>
+    <div id="circle" ng-init="domListen()">
+        <div dir="rtl">
+            <div id="locationField">
+                <input id="autocomplete" placeholder="לאן נוסעים?" onFocus="geolocate()" type="text"></input>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type="text" placeholder="מספר רכב.."></input>
+    </div>
+    <button type="button">סע!</button>
+</center>
+</div>
+<!---->
