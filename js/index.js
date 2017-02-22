@@ -1,8 +1,29 @@
 var myApp = angular.module("myApp", ['ngRoute']);
+
+myApp.controller("menuCtrl", ['$scope', '$location', function ($scope, $location) {
+    $scope.first = localStorage.getItem("firstName");
+    $scope.last = localStorage.getItem("lastName");
+}]);
+
+myApp.controller("formController", ['$scope', '$location', function ($scope, $location) {
+    $scope.first = localStorage.getItem("firstName");
+    $scope.last = localStorage.getItem("lastName");
+    
+     
+    $scope.go = function(){
+        
+        $(".title").hide();
+        $location.url("/finishDrive");
+        
+    };
+}]);
+    
+
 myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', function ($scope, $location, $timeout, $q) {
     $scope.details = '';
     $scope.personalNumber = '';
     $scope.signIn = function () {
+        $(".title").addClass("after");
         var reg = /^(\d+){7}$/;
         var p = (RegExp(reg));
         // the personal number check
@@ -49,25 +70,6 @@ myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', funct
             })
         });
     }
-    
-    function getDrives() {
-        return $q(function (resolve, reject) {
-            $.ajax({
-                method: 'GET'
-                , dataType: 'json'
-                , contentType: "application/json"
-                //, url: "http://10.17.1.70/user/" + personalNumber
-                , context: document.body
-                , success: function (result) {
-                    resolve(result);
-                }
-                , error: function (result) {
-                    sweetAlert("אופס", "אולי אתה לא נהג? ", "error");
-                    reject(false);
-                }
-            })
-        });
-    }
             }]);
 myApp.controller('MainController', function ($scope, $route, $routeParams, $location) {
     $scope.$route = $route;
@@ -81,10 +83,13 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
         templateUrl: 'html/menu.html'
         , controller: 'menuCtrl'
     }).when('/getDetails', {
-        templateUrl: 'html/form.html'
-        , controller: 'MyController'
+        templateUrl: 'html/Destination.html'
+        , controller: 'formController'
+    }).when('/finishDrive', {
+        templateUrl: 'html/finish.html'
+        , controller: 'formController'
     }).when('/drives', {
         templateUrl: 'html/drives.html'
-        , controller: 'MyController'
+        , controller: 'formController'
     });
 });
