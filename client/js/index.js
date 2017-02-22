@@ -12,17 +12,15 @@ myApp.controller("formController", ['$scope', '$location', function ($scope, $lo
 
 */
     $scope.go = function () {
-        
         var jsonToSend = {
             "vehicle_number": 123456
             , "driverID": '8087677'
-            , "source": "באר שבע"
-            , "destination": "צפת"
+            , "source": window.from
+            , "destination": window.to
             , "start_mileage": 15000
-            , "approx_mileage": 40
-            , "approx_time": d.getTime()
+            , "approx_mileage":window.distance.toFixed(1)
+            , "approx_time": (new Date).clearTime().addSeconds(window.duration).toString('H:mm:ss')
         };
-        
         
         /*
         $.ajax({
@@ -40,6 +38,7 @@ myApp.controller("formController", ['$scope', '$location', function ($scope, $lo
             }
         });
         // $(".title").hide();
+        
         */
         $location.url("/finishDrive");
     };

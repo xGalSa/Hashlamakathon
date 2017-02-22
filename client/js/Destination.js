@@ -7,6 +7,23 @@ var componentForm = {
     , country: 'long_name'
     , postal_code: 'short_name'
 };
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            geolocation = {
+                lat: position.coords.latitude
+                , lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+                center: geolocation
+                , radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+        });
+    }
+}
 
 function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical
@@ -24,8 +41,8 @@ function fillInAddress() {
     // Get the place details from the autocomplete object.
     place = autocomplete.getPlace();
     var service = new google.maps.DistanceMatrixService();
-    var origin = new google.maps.LatLng(geolocation.lat, geolocation.lng);
-    var destination = place.formatted_address;
+    origin = new google.maps.LatLng(geolocation.lat, geolocation.lng);
+    destination = place.formatted_address;
     service.getDistanceMatrix({
         origins: [origin]
         , destinations: [destination]
@@ -44,22 +61,5 @@ function callback(response, status) {
         duration = response.rows[0].elements[0].duration.value; //seconds
         from = origins[0];
         to = destinations[0];
-    }
-}
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            geolocation = {
-                lat: position.coords.latitude
-                , lng: position.coords.longitude
-            };
-            var circle = new google.maps.Circle({
-                center: geolocation
-                , radius: position.coords.accuracy
-            });
-            autocomplete.setBounds(circle.getBounds());
-        });
     }
 }
