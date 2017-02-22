@@ -14,8 +14,12 @@
     <script src="js/angular-route.js"></script>
     <script src="js/sweetalert.min.js"></script>
     <script src="js/index.js"></script>
+<<<<<<< HEAD:client/index.html
     <script src="js/Destination.js"></script>
+=======
+    <script src="js/form.js"></script>
     <script src="js/drives.js"></script>
+>>>>>>> origin/MainPage:index.html
     <title>כרטיס נסיעה</title>
 </head>
 
