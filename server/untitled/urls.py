@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'^user/logout$', logout_view),
 
     url(r'^drive/$', new_drive_view),
-    #url(r'^drive/(?P<id>[0-9]{1,9})$', drive_op_view),
+    url(r'^drive/(?P<id>[0-9]{1,9})$', drive_op_view),
 ]

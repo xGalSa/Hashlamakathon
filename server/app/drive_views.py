@@ -38,3 +38,11 @@ def new_drive_view(request):
         drive.vehicle_number.save()
 
         return Response(status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def drive_op_view(request):
+    if request.method == "GET":
+        return Response(status=status.HTTP_200_OK)
+
+

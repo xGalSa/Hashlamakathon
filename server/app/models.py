@@ -26,6 +26,7 @@ class Vehicle(models.Model):
     # TODO: Add owners and privileges
 
 class Drive(models.Model):
+    drive_id = models.AutoField(primary_key=True)
     driverID = models.ForeignKey(SoldierUser)
     vehicle_number = models.ForeignKey(Vehicle)
     source = models.CharField(max_length=256)
@@ -45,6 +46,11 @@ class NewDriveDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Drive
         fields = ('vehicle_number', 'driverID', 'source', 'destination', 'start_mileage', 'approx_mileage', 'approx_time')
+
+class DriveDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Drive
+        fields = ('vehicle_number', 'driverID', 'source', 'destination', 'start_mileage', 'end_mileage', 'approx_mileage', 'approx_time', 'start_time', 'end_time')
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
