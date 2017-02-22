@@ -1,29 +1,53 @@
 var myApp = angular.module("myApp", ['ngRoute']);
-
 myApp.controller("menuCtrl", ['$scope', '$location', function ($scope, $location) {
     $scope.first = localStorage.getItem("firstName");
     $scope.last = localStorage.getItem("lastName");
 }]);
-
 myApp.controller("formController", ['$scope', '$location', function ($scope, $location) {
+    var d = new Date();
     $scope.first = localStorage.getItem("firstName");
     $scope.last = localStorage.getItem("lastName");
-    
-     
-    $scope.go = function(){
+    /*
+'vehicle_number', 'driverID', 'source', 'destination', 'start_mileage', 'approx_mileage', 'approx_time'
+
+*/
+    $scope.go = function () {
         
-        $(".title").hide();
+        var jsonToSend = {
+            "vehicle_number": 123456
+            , "driverID": '8087677'
+            , "source": "באר שבע"
+            , "destination": "צפת"
+            , "start_mileage": 15000
+            , "approx_mileage": 40
+            , "approx_time": d.getTime()
+        };
+        
+        
+        /*
+        $.ajax({
+            method: 'POST'
+            , dataType: 'json'
+            , contentType: "application/json"
+            , url: "http://10.17.1.70/drive"
+            , data: jsonToSend
+            , context: document.body
+            , success: function (result) {
+                alert(result);
+            }
+            , error: function (result) {
+                alert(result);
+            }
+        });
+        // $(".title").hide();
+        */
         $location.url("/finishDrive");
-        
     };
 }]);
-    
-
 myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', function ($scope, $location, $timeout, $q) {
     $scope.details = '';
     $scope.personalNumber = '';
     $scope.signIn = function () {
-        $(".title").addClass("after");
         var reg = /^(\d+){7}$/;
         var p = (RegExp(reg));
         // the personal number check

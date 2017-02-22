@@ -1,0 +1,73 @@
+<style>
+    @media (min-width: 300px){
+    .container {
+        /* width: 85%; */
+        padding: 15px;
+        margin: auto;
+        }
+        
+    #myTable {
+        overflow: scroll; /* Scrollbar are always visible */
+        overflow: auto;   /* Scrollbar is displayed as it's needed */
+        overflow-x: scroll;
+        overflow-y: scroll;
+        display: block;
+        }
+    }
+    
+}
+</style>
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+
+<div class="container" ng-controller="tableController">
+           
+    <div class="row">
+    
+      <label for="exampleEmailInput">סינון טבלה</label>
+      <input class="u-full-width" oninput="w3.filterHTML('#myTable', '.item', this.value)" type="search" placeholder="טקסט חופשי" >
+    
+    <!--
+        <div class="six columns">
+      <label for="exampleRecipientInput">סינון</label>
+      <select class="u-full-width" id="mySelector">
+        <option value="Option 1">{{titles[0]}}</option>
+        <option value="Option 2">{{titles[1]}}</option>
+        <option value="Option 3">{{titles[2]}}</option>
+        <option value="Option 4">{{titles[3]}}</option>
+        <option value="Option 5">{{titles[4]}}</option>
+        <option value="Option 6">{{titles[5]}}</option>
+        <option value="Option 7">{{titles[6]}}</option>
+        <option value="Option 8">{{titles[7]}}</option>
+      </select>
+    </div>
+        -->
+  </div>
+    
+<table class="u-full-width" id="myTable">
+  <thead>
+    <tr>
+      <th>{{titles[0]}}</th>
+      <th>{{titles[1]}}</th>
+      <th>{{titles[2]}}</th>
+      <th>{{titles[3]}}</th>
+      <th>{{titles[4]}}</th>
+      <th>{{titles[5]}}</th>
+      <th>{{titles[6]}}</th>
+      <th>{{titles[7]}}</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="drive in drives">
+    <tr class="item">
+      <td>{{drive.driverID}}</td>
+      <td>{{drive.vehicle_number}}</td>
+      <td>{{drive.source}}</td>
+      <td>{{drive.destination}}</td>
+      <td dir="ltr">{{drive.start_mileage}} km</td>
+        <td dir="ltr"><div ng-if="drive.end_mileage">{{drive.end_mileage}} km</div></td>
+      <td>{{drive.start_time}}</td>
+      <td>{{drive.end_time}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
