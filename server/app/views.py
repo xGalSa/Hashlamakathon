@@ -10,8 +10,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
-from app.models import *
 from django.views.decorators.csrf import csrf_exempt
+from app.models import *
 
 def get_user_by_soldierID(solderID):
     try:
@@ -45,17 +45,28 @@ def logout_view(request):
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
+def user_license_view(request):
+    user = request.user
+
+    if user.is_anonymous:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    s = Driver.objects.get(soldier__user=user)
+
+    return Response(JSONRenderer().render({"license-number":s.license_number, "expiration-date":s.expiration}))
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
 def current_user_view(request):
-    if request.method == 'GET':
-        user = request.user
+    user = request.user
 
-        if user.is_anonymous:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+    if user.is_anonymous:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-        serializer = UserSerializer(user)
-        json = JSONRenderer().render(serializer.data)
+    serializer = UserSerializer(user)
+    json = JSONRenderer().render(serializer.data)
 
-        return Response(json)
+    return Response(json)
 
 
 @api_view(['GET', 'POST'])
