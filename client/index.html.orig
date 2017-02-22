@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+   
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/index.js"></script>
+<<<<<<< HEAD:client/index.html
+    <script src="js/Destination.js"></script>
+=======
+    <script src="js/form.js"></script>
+    <script src="js/drives.js"></script>
+>>>>>>> origin/MainPage:index.html
+    <title>כרטיס נסיעה</title>
+</head>
+
+<body dir="rtl" style="FONT-FAMILY: Segoe UI;">
+    <div id="background"> <img src="assets/background.jpg" class="stretch" alt="" /> </div>
+    <div class="title"> כרטיס נסיעה </div>
+    <div ng-view> </div>
+</body>
+
+</html>
+     <script src="js/finish.js"></script>
