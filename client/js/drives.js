@@ -1,4 +1,5 @@
-myApp.controller("tableController", function ($scope) {
+myApp.controller("tableController", function ($scope, $http) {
+    
     
     var tableTitles = [
       'נהג',
@@ -41,8 +42,37 @@ myApp.controller("tableController", function ($scope) {
       "arrivalTime":"asd"
     }];
     
+    var success = function(result){
+        console.log(result);
+        $scope.drives = result;//placeHolder;
+    };
+    $http.post('http://10.17.1.70/drive/all')
+       .then(function(res){
+          console.log(res.data);      
+            $scope.drives = JSON.parse(res.data);
+        });
+    
+    /*
+    $.ajax({
+            method: 'POST'
+            , dataType: 'json'
+            , contentType: "application/json"
+            , url: "http://10.17.1.70/drive/all"
+            //, data: jsonToSend
+            , context: document.body
+            , success: function (result) {
+                //alert(result);
+                //x.drives = result;
+               // success($scope,result);
+            }
+            , error: function (result) {
+                alert(result);
+            }
+        });
+    */
+    
     $scope.titles = tableTitles;
-    $scope.drives = placeHolder;
+    //$scope.drives = placeHolder;
     
     return $scope.drives;
 });

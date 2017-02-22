@@ -10,16 +10,17 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/sweetalert.min.js"></script>
     <script src="js/index.js"></script>
-<<<<<<< HEAD:client/index.html
     <script src="js/Destination.js"></script>
+<<<<<<< HEAD
+    <script src="js/finish.js"></script>
 =======
-    <script src="js/form.js"></script>
+>>>>>>> 24d23e08b4c49a32f3de8e936709bfd003d2a42d
     <script src="js/drives.js"></script>
->>>>>>> origin/MainPage:index.html
     <title>כרטיס נסיעה</title>
 </head>
 

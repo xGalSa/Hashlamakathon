@@ -1,11 +1,20 @@
 <style>
-    @media (min-width: 400px){
+    @media (min-width: 300px){
     .container {
         /* width: 85%; */
         padding: 15px;
         margin: auto;
         }
+        
+    #myTable {
+        overflow: scroll; /* Scrollbar are always visible */
+        overflow: auto;   /* Scrollbar is displayed as it's needed */
+        overflow-x: scroll;
+        overflow-y: scroll;
+        display: block;
+        }
     }
+    
 }
 </style>
 
@@ -50,14 +59,14 @@
   </thead>
   <tbody ng-repeat="drive in drives">
     <tr class="item">
-      <td>{{drive.name}}</td>
-      <td>{{drive.vNum}}</td>
-      <td>{{drive.from}}</td>
-      <td>{{drive.to}}</td>
-      <td dir="ltr">{{drive.startKm}} km</td>
-      <td dir="ltr">{{drive.endKm}} km</td>
-      <td>{{drive.exitTime}}</td>
-      <td>{{drive.arrivalTime}}</td>
+      <td>{{drive.driverID}}</td>
+      <td>{{drive.vehicle_number}}</td>
+      <td>{{drive.source}}</td>
+      <td>{{drive.destination}}</td>
+      <td dir="ltr">{{drive.start_mileage}} km</td>
+        <td dir="ltr"><div ng-if="drive.end_mileage">{{drive.end_mileage}} km</div></td>
+      <td>{{drive.start_time}}</td>
+      <td>{{drive.end_time}}</td>
     </tr>
   </tbody>
 </table>
