@@ -4,6 +4,8 @@ body {
 }
 
 
+/* Optional: Makes the sample page fill the window. */
+
 .round-button {
 	width:25%;
 }
