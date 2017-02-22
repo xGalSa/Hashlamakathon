@@ -88,5 +88,8 @@ myApp.controller('MainController', function ($scope, $route, $routeParams, $loca
     }).when('/finishDrive', {
         templateUrl: 'html/finish.html'
         , controller: 'formController'
+    }).when('/drives', {
+        templateUrl: 'html/drives.html'
+        , controller: 'formController'
     });
 });
