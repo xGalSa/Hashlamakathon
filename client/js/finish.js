@@ -49,11 +49,11 @@ function initMap() {
     });
     
         var geocoder = new google.maps.Geocoder();
-    document.getElementById('submit').addEventListener('click', function () {
-        x = 0;
-        y = 0;
-        geocodeAddress(geocoder, x, y);
-    });
+//    document.getElementById('submit').addEventListener('click', function () {
+//        x = 0;
+//        y = 0;
+//        geocodeAddress(geocoder, x, y);
+//    });
     
    
 }

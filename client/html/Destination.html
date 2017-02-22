@@ -1,7 +1,6 @@
 <!--<script src="js/Destination.js"></script>-->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRzdZeA3FUXoR2cmOrAsyK1R79AV1imWI&libraries=places&callback=initAutocomplete"></script>
-
-<center>
+<center >
     <div ng-controller="formController">
         <h1> היי {{first}}  {{last}}</h1></div>
     <h2>רק שתי שאלות לפני הנסיעה</h2>
@@ -15,8 +14,18 @@
     <div>
         <input type="text" placeholder="מספר רכב.."></input>
     </div>
-    <button id="startDrive" type="button" ng-click="go()">סע!</button>
-   
-    
-    </center>
+    <button id="startDrive" type="button" ng-click="go()" data-toggle="modal" data-target="#myModal">סע!</button>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" ng-controller="formController">
+                    <button id="closeBtn" type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">פרטי נסיעה</h4> </div>
+                <div id="details" class="modal-body"> </div>
+                
+            </div>
+        </div>
+    </div>
+</center>
 </div>

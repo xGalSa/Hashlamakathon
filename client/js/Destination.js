@@ -41,7 +41,7 @@ function fillInAddress() {
     // Get the place details from the autocomplete object.
     place = autocomplete.getPlace();
     var service = new google.maps.DistanceMatrixService();
-    origin = new google.maps.LatLng(geolocation.lat, geolocation.lng);
+    var origin = new google.maps.LatLng({lat:geolocation.lat, lng:geolocation.lng});
     destination = place.formatted_address;
     service.getDistanceMatrix({
         origins: [origin]
@@ -56,10 +56,14 @@ function fillInAddress() {
 function callback(response, status) {
     if (status == 'OK') {
         var origins = response.originAddresses;
+        
         var destinations = response.destinationAddresses;
         distance = response.rows[0].elements[0].distance.value; // distance in meters
         duration = response.rows[0].elements[0].duration.value; //seconds
         from = origins[0];
         to = destinations[0];
+        localStorage.setItem("origin", from);
+        localStorage.setItem("dest", to);
+        
     }
 }

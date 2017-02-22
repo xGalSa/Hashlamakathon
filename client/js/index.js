@@ -11,36 +11,28 @@ myApp.controller("formController", ['$scope', '$location', function ($scope, $lo
 'vehicle_number', 'driverID', 'source', 'destination', 'start_mileage', 'approx_mileage', 'approx_time'
 
 */
+    
+   
+    
     $scope.go = function () {
-        var jsonToSend = {
+        var str = "נסיעה מ" + window.from + " ל" + window.to + "\n";
+        str += " אנחנו משערים שתיסע כ " + ((window.distance) / 1000).toFixed(1) + " קילומטרים ";
+        str += " וזה ייקח לך" + ((window.duration) / 60 / 60).toFixed(2) + " שעות\n";
+        str += " נסיעה נעימה! "
+        jsonToSend = {
             "vehicle_number": 123456
             , "driverID": '8087677'
             , "source": window.from
             , "destination": window.to
             , "start_mileage": 15000
-            , "approx_mileage":window.distance.toFixed(1)
-            , "approx_time": (new Date).clearTime().addSeconds(window.duration).toString('H:mm:ss')
+            , "approx_mileage": (window.distance.toFixed(1))
+            , "approx_time": ((window.duration) / 60 / 60).toFixed(2)
         };
-        
-        /*
-        $.ajax({
-            method: 'POST'
-            , dataType: 'json'
-            , contentType: "application/json"
-            , url: "http://10.17.1.70/drive"
-            , data: jsonToSend
-            , context: document.body
-            , success: function (result) {
-                alert(result);
-            }
-            , error: function (result) {
-                alert(result);
-            }
-        });
-        // $(".title").hide();
-        
-        */
-        $location.url("/finishDrive");
+        document.getElementById("details").innerText = str;
+        $('#myModal').on('hidden.bs.modal', function () {
+            location.replace(location.origin + "/client/index.html#/finishDrive");
+            //  $location.url("/finishDrive");
+        })
     };
 }]);
 myApp.controller('MyController', ['$scope', '$location', '$timeout', '$q', function ($scope, $location, $timeout, $q) {
