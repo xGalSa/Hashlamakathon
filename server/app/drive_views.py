@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework import permissions
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -14,14 +14,28 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from datetime import datetime
 
-@csrf_exempt
-@api_view(['GET'])
+from rest_framework.authentication import SessionAuthentication
+
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+    def enforce_csrf(self, request):
+        return  # To not perform the csrf check previously happening
+
+def test_class_view(View):
+    authentication_classes = (CsrfExemptSessionAuthentication)
+
+    def post():
+        return Response("hi", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication, ))
 def new_drive_view(request):
     user = request.user
 
     if user.is_anonymous:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+   # if driver.expiration.isoformat() > datetime.now()
 
     try:
         s = NewDriveDetailsSerializer(data=request.data)
@@ -29,7 +43,7 @@ def new_drive_view(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
     if s.is_valid() == False:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     vehicle = Vehicle.objects.get(pk=request.data["vehicle_number"])
 
@@ -44,8 +58,9 @@ def new_drive_view(request):
 
     return Response(drive.drive_id, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication, ))
 def drive_info_view(request, id):
     try:
         d = Drive.objects.get(pk=id)
@@ -60,8 +75,9 @@ def drive_info_view(request, id):
 
     return Response(json, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication, ))
 def drive_finish_view(request, id):
     try:
         d = Drive.objects.get(pk=id)
@@ -85,8 +101,9 @@ def drive_finish_view(request, id):
     return Response(status=status.HTTP_200_OK)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication, ))
 def all_drives_view(request):
     drives = Drive.objects.all()
 

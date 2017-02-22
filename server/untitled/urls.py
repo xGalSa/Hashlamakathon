@@ -25,6 +25,7 @@ urlpatterns = [
                                namespace='rest_framework')),
     url(r'^user/(?P<id>[0-9]{7})$', user_view),
     url(r'^user/$', current_user_view),
+    url(r'^user/license$', user_license_view),
     url(r'^user/login/(?P<id>[0-9]{7})$', login_view),
     url(r'^user/logout$', logout_view),
 
@@ -32,4 +33,5 @@ urlpatterns = [
     url(r'^drive/(?P<id>[0-9]{1,9})/info$', drive_info_view),
     url(r'^drive/(?P<id>[0-9]{1,9})/finish', drive_finish_view),
     url(r'^drive/all', all_drives_view),
+
 ]
