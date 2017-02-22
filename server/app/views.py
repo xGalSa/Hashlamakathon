@@ -51,9 +51,9 @@ def user_license_view(request):
     if user.is_anonymous:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-    #d = {"is-driver":
+    s = Driver.objects.get(soldier__user=user)
 
-    return Response(JSONRenderer().render(d))
+    return Response(JSONRenderer().render({"license-number":s.license_number, "expiration-date":s.expiration}))
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
