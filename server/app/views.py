@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from app.models import *
+from django.views.decorators.csrf import csrf_exempt
 
 def get_user_by_soldierID(solderID):
     try:
@@ -71,6 +72,4 @@ def user_view(request, id):
         json = JSONRenderer().render(serializer.data)
 
         return Response(json)
-
-
 

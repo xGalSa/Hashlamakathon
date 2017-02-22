@@ -37,6 +37,7 @@ class Drive(models.Model):
     start_time = models.DateTimeField(auto_now_add=True,blank=True,null=True)
     end_time = models.DateTimeField(blank=True,null=True)
     approx_time = models.DateTimeField()
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return "%s %s" % (self.vehicle_number, self.start_time)
@@ -50,7 +51,7 @@ class NewDriveDetailsSerializer(serializers.ModelSerializer):
 class DriveDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Drive
-        fields = ('vehicle_number', 'driverID', 'source', 'destination', 'start_mileage', 'end_mileage', 'approx_mileage', 'approx_time', 'start_time', 'end_time')
+        fields = ('drive_id', 'is_active', 'vehicle_number', 'driverID', 'source', 'destination', 'start_mileage', 'end_mileage', 'approx_mileage', 'approx_time', 'start_time', 'end_time')
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
